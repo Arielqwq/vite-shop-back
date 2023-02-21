@@ -13,6 +13,10 @@ const schema = new Schema(
     description: {
       type: String,
       required: [true, '缺少內文']
+    },
+    sell: {
+      type: Boolean,
+      required: [true, '缺少狀態']
     }
   },
   { versionKey: false }

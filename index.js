@@ -11,6 +11,7 @@ import orderRoute from './routes/orders.js'
 import aboutusRoute from './routes/aboutus.js'
 import eventsRoute from './routes/events.js'
 import newsRoute from './routes/news.js'
+import feedbackRoute from './routes/feedbacks.js'
 
 import './passport/passport.js'
 
@@ -61,6 +62,8 @@ app.use('/aboutus', aboutusRoute)
 app.use('/events', eventsRoute)
 // 消息頁
 app.use('/news', newsRoute)
+// 回應頁
+app.use('/feedbacks', feedbackRoute)
 
 // 喚醒伺服器
 if (process.env.render) {

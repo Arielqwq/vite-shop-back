@@ -5,6 +5,7 @@ export const createNews = async (req, res) => {
     const result = await news.create({
       title: req.body.title,
       description: req.body.description,
+      sell: req.body.sell,
       image: req.files?.image?.[0]?.path || ''
     })
     res.status(200).json({ success: true, message: '', result })
@@ -17,7 +18,18 @@ export const createNews = async (req, res) => {
   }
 }
 
-export const getNews = async (req, res) => {
+// 上架，查詢方法是 sell: true
+export const getSellNews = async (req, res) => {
+  try {
+    const result = await news.find({ sell: true })
+    res.status(200).json({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).json({ success: false, message: '未知錯誤' })
+  }
+}
+
+// 只有管理員看得到
+export const getAllNews = async (req, res) => {
   try {
     const result = await news.find()
     res.status(200).json({ success: true, message: '', result })
