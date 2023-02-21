@@ -20,19 +20,6 @@ const schema = new Schema(
       required: [true, '缺少使用者']
     },
     products: {
-      // type: [
-      //   {
-      //     product: {
-      //       type: ObjectId,
-      //       ref: 'products',
-      //       required: [true, '缺少商品']
-      //     },
-      //     quantity: {
-      //       type: Number,
-      //       required: [true, '缺少數量']
-      //     }
-      //   }
-      // ],
       type: [orderSchema],
       default: []
     },
@@ -40,6 +27,10 @@ const schema = new Schema(
       type: Date,
       //  Date.now當下的時間戳記， Date.now() 則會是 serve 打開的時間
       default: Date.now
+    },
+    status: {
+      type: Number,
+      defsult: 0
     }
   },
   { versionKey: false }

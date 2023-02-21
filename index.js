@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import https from 'https'
 import userRoute from './routes/users.js'
 // 錯誤測試
 // import userRoute from './routes/users'
@@ -58,10 +59,15 @@ app.use('/aboutus', aboutusRoute)
 // 活動頁
 app.use('/events', eventsRoute)
 
-// 固定回傳200
-app.get('/', (req, res) => {
-  res.status(200).json({ success: true, message: '' })
-})
+if (process.env.render) {
+  setInterval(() => {
+    https.get(process.env.render)
+  }, 1000 * 60 * 5)
+}
+// // 固定回傳200
+// app.get('/', (req, res) => {
+//   res.status(200).json({ success: true, message: '' })
+// })
 
 app.all('*', (req, res) => {
   res.status(404).json({ success: false, message: '~我找不到~' })

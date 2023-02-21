@@ -1,4 +1,5 @@
 import events from '../models/events.js'
+// .sort({ _id: -1 }).limit(2) 過濾最新的兩筆
 
 export const createEvent = async (req, res) => {
   try {
@@ -40,7 +41,16 @@ export const getSellEvents = async (req, res) => {
   }
 }
 
-//
+export const getlastEventsforHome = async (req, res) => {
+  try {
+    const result = await events.find({ sell: true }).sort({ _id: -1 }).limit(2)
+    res.status(200).json({ success: true, message: '', result })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, message: '未知錯誤' })
+  }
+}
+
 // 會員查自己參加的活動
 export const getMyEvents = async (req, res) => {
   try {
