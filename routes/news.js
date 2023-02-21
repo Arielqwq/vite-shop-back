@@ -3,7 +3,7 @@ import content from '../middleware/content.js'
 import admin from '../middleware/admin.js'
 import upload from '../middleware/upload.js'
 import { jwt } from '../middleware/auth.js'
-import { createNews, getNews, editNews } from '../controllers/aboutus.js'
+import { createNews, getNews, editNews } from '../controllers/news.js'
 
 const router = Router()
 

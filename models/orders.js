@@ -30,7 +30,7 @@ const schema = new Schema(
     },
     status: {
       type: Number,
-      defsult: 0
+      default: 0
     }
   },
   { versionKey: false }

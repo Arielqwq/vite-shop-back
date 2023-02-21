@@ -10,6 +10,7 @@ import productRoute from './routes/products.js'
 import orderRoute from './routes/orders.js'
 import aboutusRoute from './routes/aboutus.js'
 import eventsRoute from './routes/events.js'
+import newsRoute from './routes/news.js'
 
 import './passport/passport.js'
 
@@ -58,7 +59,10 @@ app.use('/orders', orderRoute)
 app.use('/aboutus', aboutusRoute)
 // 活動頁
 app.use('/events', eventsRoute)
+// 消息頁
+app.use('/news', newsRoute)
 
+// 喚醒伺服器
 if (process.env.render) {
   setInterval(() => {
     https.get(process.env.render)
