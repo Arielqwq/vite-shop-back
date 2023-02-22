@@ -3,6 +3,7 @@ import feedbacks from '../models/feedbacks.js'
 export const createFeedback = async (req, res) => {
   try {
     const result = await feedbacks.create({
+      u_id: req.user._id,
       title: req.body.title,
       description: req.body.description
     })
@@ -19,7 +20,7 @@ export const createFeedback = async (req, res) => {
 // 取自己的回應內容
 export const getMyFeedbacks = async (req, res) => {
   try {
-    const result = await feedbacks.find({ u_id: req.user._id }).populate('feedbacks.p_id')
+    const result = await feedbacks.find({ u_id: req.user._id })
     res.status(200).json({ success: true, message: '', result })
   } catch (error) {
     res.status(500).json({ success: false, message: '未知錯誤' })
@@ -40,7 +41,9 @@ export const getAllFeedbacks = async (req, res) => {
 export const replyFeedbacks = async (req, res) => {
   try {
     const feedbacksNew = await feedbacks.findById(req.params.id)
-    feedbacksNew.response = req.body.response
+    feedbacksNew.reply = req.body.reply
+    feedbacksNew.status = req.body.status ? 1 : 0
+    feedbacksNew.replyDate = new Date()
     await feedbacksNew.save()
     res.status(200).json({ success: true, message: '', result: feedbacksNew })
   } catch (error) {
