@@ -10,7 +10,7 @@ const schema = new Schema(
       type: String,
       required: [true, '缺少說明']
     },
-    response: {
+    reply: {
       type: String,
       default: ''
     },
