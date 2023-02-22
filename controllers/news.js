@@ -28,6 +28,24 @@ export const getSellNews = async (req, res) => {
   }
 }
 
+// 查單一個商品
+export const getNewsPage = async (req, res) => {
+  try {
+    const result = await news.findById(req.params.id)
+    if (!result) {
+      res.status(404).json({ success: false, message: '找不到此筆消息' })
+    } else {
+      res.status(200).json({ success: true, message: '', result })
+    }
+  } catch (error) {
+    if (error.name === 'CastError') {
+      res.status(404).json({ success: false, message: 'ID 格式錯誤，找不到這則消息' })
+    } else {
+      res.status(500).json({ success: false, message: '未知錯誤' })
+    }
+  }
+}
+
 // 只有管理員看得到
 export const getAllNews = async (req, res) => {
   try {
