@@ -1,4 +1,5 @@
 import products from '../models/products.js'
+import { Types } from 'mongoose'
 
 export const createProduct = async (req, res) => {
   try {
@@ -32,6 +33,24 @@ export const getSellProducts = async (req, res) => {
     const result = await products.find({ sell: true })
     res.status(200).json({ success: true, message: '', result })
   } catch (error) {
+    res.status(500).json({ success: false, message: '未知錯誤' })
+  }
+}
+
+// 取推薦商品
+export const getProducRecom = async (req, res) => {
+  try {
+    const result = await products.aggregate([
+      {
+        $match: { sell: true, _id: { $ne: Types.ObjectId(req.params.id) } }
+      },
+      {
+        $sample: { size: 3 }
+      }
+    ])
+    res.status(200).json({ success: true, message: '', result })
+  } catch (error) {
+    console.log(error)
     res.status(500).json({ success: false, message: '未知錯誤' })
   }
 }

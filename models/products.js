@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import random from 'mongoose-simple-random'
 
 const schema = new Schema(
   {
@@ -40,5 +41,4 @@ const schema = new Schema(
   },
   { versionKey: false }
 )
-
 export default model('products', schema)
