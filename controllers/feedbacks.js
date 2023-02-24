@@ -30,7 +30,8 @@ export const getMyFeedbacks = async (req, res) => {
 // 只有管理員看得到所有
 export const getAllFeedbacks = async (req, res) => {
   try {
-    const result = await feedbacks.find()
+    // .populate('u_id', 'username')把 username填進去u_id裡，要多個就在'username account'新增，或是只不要某一個 '-username '
+    const result = await feedbacks.find().populate('u_id', 'username')
     res.status(200).json({ success: true, message: '', result })
   } catch (error) {
     res.status(500).json({ success: false, message: '未知錯誤' })

@@ -45,7 +45,7 @@ export const getProducRecom = async (req, res) => {
         $match: { sell: true, _id: { $ne: Types.ObjectId(req.params.id) } }
       },
       {
-        $sample: { size: 3 }
+        $sample: { size: 4 }
       }
     ])
     res.status(200).json({ success: true, message: '', result })
