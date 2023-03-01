@@ -131,6 +131,27 @@ export const editUser = async (req, res) => {
   }
 }
 
+export const adminEditUser = async (req, res) => {
+  try {
+    // console.log(req)
+    // const result = await users.findByIdAndUpdate(req.body._id, {
+    //   account: req.body.account,
+    //   email: req.body.email
+    // }
+    const result = await users.findByIdAndUpdate(req.body._id, {
+      account: req.body.account,
+      password: req.body.password,
+      email: req.body.email,
+      username: req.body.username,
+      phone: req.body.phone,
+      birth: req.body.birth
+    }, { new: true })
+    res.status(200).json({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).json({ success: false, message: '未知錯誤' })
+  }
+}
+
 export const editCart = async (req, res) => {
   try {
     // 找購物車有沒有此商品
