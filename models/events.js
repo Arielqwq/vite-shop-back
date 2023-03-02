@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, ObjectId } from 'mongoose'
 import validator from 'validator'
 
 const participantInfo = new Schema({
   account: {
-    type: String,
+    type: ObjectId,
     ref: 'users',
     required: [true, '缺少帳號']
   },

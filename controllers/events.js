@@ -54,7 +54,7 @@ export const getlastEventsforHome = async (req, res) => {
 // 會員查自己參加的活動
 export const getMyEvents = async (req, res) => {
   try {
-    const result = await events.find({ u_id: req.user._id })
+    const result = await events.find({ 'participant.account': req.user._id })
     console.log(result)
     res.status(200).json({ success: true, message: '', result })
   } catch (error) {
