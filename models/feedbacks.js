@@ -24,7 +24,8 @@ const schema = new Schema(
     },
     createDate: {
       type: Date,
-      default: new Date()
+      // default: new Date()
+      default: Date.now
     },
     replyDate: {
       type: Date
