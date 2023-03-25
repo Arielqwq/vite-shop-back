@@ -24,7 +24,7 @@ const schema = new Schema(
     },
     createDate: {
       type: Date,
-      default: new Date()
+      default: new Date().toISOString()
     },
     replyDate: {
       type: Date
